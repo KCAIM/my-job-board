@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Apply for Job</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css"> <!-- Correct path -->
+</head>
+<body> <!-- Removed bg-light class -->
+
+  <div class="container mt-5">
+
+    <!-- Display Flash/Session Messages -->
+    <% if (locals.success_msg) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= locals.success_msg %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% } %>
+    <% if (locals.error_msg) { %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= locals.error_msg %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% } %>
+    <!-- End Messages -->
+
+    <!-- Added main-title class -->
+    <h1 class="mb-4 main-title">Apply for <%= job.title %> at <%= job.company %></h1>
+
+    <!-- Added form-card class, removed bg-white -->
+    <form action="/jobs/<%= job.id %>/apply" method="POST" enctype="multipart/form-data" class="card p-4 shadow-sm rounded form-card">
+      <div class="mb-3">
+        <label class="form-label">Your Name</label>
+        <input type="text" name="name" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Email Address</label>
+        <input type="email" name="email" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Message or Cover Letter</label>
+        <textarea name="message" class="form-control" rows="5" required></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Upload Resume (PDF or DOCX)</label>
+        <input type="file" name="resume" class="form-control" accept=".pdf,.doc,.docx" required>
+        <!-- Consider adding help text for file size limits if any -->
+        <!-- <div class="form-text">Max file size: 5MB</div> -->
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <a href="/jobs/<%= job.id %>" class="btn btn-secondary">Back to Job</a>
+        <button type="submit" class="btn btn-primary">Submit Application</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Bootstrap JS Bundle (Needed for Alert dismissal) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

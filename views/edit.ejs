@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Job</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css"> <!-- Correct path -->
+</head>
+<body> <!-- Removed bg-light class -->
+
+  <div class="container mt-5">
+
+    <!-- Display Flash/Session Messages -->
+    <% if (locals.success_msg) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= locals.success_msg %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% } %>
+    <% if (locals.error_msg) { %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= locals.error_msg %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% } %>
+    <!-- End Messages -->
+
+    <!-- Added main-title class -->
+    <h1 class="mb-4 main-title">Edit Job</h1>
+
+    <!-- Added form-card class, removed bg-white -->
+    <form action="/jobs/<%= job.id %>/edit" method="POST" class="card p-4 shadow-sm rounded form-card">
+      <div class="mb-3">
+        <label class="form-label">Job Title</label>
+        <input type="text" name="title" class="form-control" value="<%= job.title %>" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Company</label>
+        <input type="text" name="company" class="form-control" value="<%= job.company %>" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Location</label>
+        <input type="text" name="location" class="form-control" value="<%= job.location %>" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Salary</label>
+        <input type="text" name="salary" class="form-control" value="<%= job.salary || '' %>"> <!-- Added fallback for null/undefined -->
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Requirements</label>
+        <textarea name="requirements" class="form-control" rows="4"><%= job.requirements || '' %></textarea> <!-- Added fallback for null/undefined -->
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <a href="/jobs/<%= job.id %>" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-success">Save Changes</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Bootstrap JS Bundle (Needed for Alert dismissal) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

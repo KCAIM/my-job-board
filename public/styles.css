@@ -1,0 +1,269 @@
+/* Updated styles.css with rounded edges */
+
+:root {
+  /* Keeping Netflix Red for cards, adding greys and black */
+  --theme-red: #E50914;
+  --theme-red-darker: #B8070F; /* For hover */
+  --theme-black: #141414; /* For buttons */
+  --theme-dark-grey: #333333; /* Card text or secondary elements */
+  --theme-mid-grey: #808080; /* Fallback background */
+  --theme-light-grey: #e5e5e5; /* Button text, maybe headings */
+  --theme-white: #ffffff; /* Headings or bright text */
+  --border-curve-radius: 15px; /* Define a variable for consistent curve */
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  padding: 2rem;
+  /* background-color: var(--theme-mid-grey); */ /* Replaced by background image */
+  color: var(--theme-dark-grey); /* Default text color, adjust if needed for contrast */
+  margin: 0;
+
+  /* --- Background Image --- */
+  background-image: url('/images/board-background2.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  /* Optional Overlay */
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  /* background-blend-mode: overlay; */
+
+  min-height: 100vh;
+}
+
+h1.main-title {
+  color: var(--theme-white);
+  /* text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); */
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* --- Links (General) --- */
+a {
+  color: var(--theme-black);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--theme-red);
+}
+
+/* --- Buttons --- */
+.btn,
+button.btn {
+  background-color: var(--theme-black);
+  color: var(--theme-light-grey);
+  border: 1px solid var(--theme-black);
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: var(--border-curve-radius); /* <<< UPDATED */
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  box-shadow: none !important;
+}
+
+/* Specific overrides if needed */
+.btn-primary,
+.btn-success,
+.btn-outline-danger,
+.btn-outline-primary {
+  background-color: var(--theme-black);
+  color: var(--theme-light-grey);
+  border-color: var(--theme-black);
+  border-radius: var(--border-curve-radius); /* <<< Ensure override applies radius */
+}
+
+/* Button Hover Effects */
+.btn:hover,
+button.btn:hover {
+  background-color: var(--theme-dark-grey);
+  border-color: var(--theme-dark-grey);
+  color: var(--theme-white);
+}
+
+
+/* --- Job Card Styling --- */
+.card.job-card {
+  background-color: var(--theme-red);
+  color: var(--theme-light-grey);
+  border: 1px solid var(--theme-red-darker);
+  border-radius: var(--border-curve-radius); /* <<< UPDATED */
+  padding: 0;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  overflow: hidden; /* Helps ensure content respects the curve */
+}
+
+.card.job-card:hover {
+  background-color: var(--theme-red-darker);
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Ensure elements inside the card are styled correctly */
+.card.job-card .card-body {
+    padding: 20px;
+}
+
+.card.job-card .card-title,
+.card.job-card h5.job-title {
+  color: var(--theme-white);
+  font-weight: bold;
+}
+
+.card.job-card .card-subtitle,
+.card.job-card h6.job-company-location {
+  color: var(--theme-light-grey);
+  opacity: 0.9;
+}
+
+.card.job-card p,
+.card.job-card strong {
+  color: var(--theme-light-grey);
+}
+
+/* Style the 'View Details' button inside the card */
+.card.job-card .btn.view-details-btn {
+  background-color: var(--theme-black);
+  color: var(--theme-light-grey);
+  border-color: var(--theme-black);
+  border-radius: var(--border-curve-radius); /* <<< Ensure inner buttons also curve */
+}
+.card.job-card .btn.view-details-btn:hover {
+  background-color: var(--theme-dark-grey);
+  border-color: var(--theme-dark-grey);
+  color: var(--theme-white);
+}
+
+/* --- Form Card Styling --- */
+.card.form-card,
+form.form-card {
+  background-color: var(--theme-red);
+  color: var(--theme-light-grey);
+  border: 1px solid var(--theme-red-darker);
+  border-radius: var(--border-curve-radius); /* <<< UPDATED */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  overflow: hidden; /* Helps ensure content respects the curve */
+}
+
+/* Style elements inside the form card (General) */
+.form-card h1,
+.form-card h2,
+.form-card .form-label {
+  color: var(--theme-white);
+}
+
+/* Style input fields and textareas */
+.form-card .form-control {
+  background-color: var(--theme-dark-grey);
+  color: var(--theme-light-grey);
+  border: 1px solid var(--theme-black);
+  border-radius: calc(var(--border-curve-radius) / 2); /* Optional: slightly curve inputs too */
+}
+
+/* Style placeholder text */
+.form-card .form-control::placeholder {
+  color: var(--theme-mid-grey);
+  opacity: 0.8;
+}
+
+/* Style focus state for inputs */
+.form-card .form-control:focus {
+  background-color: #444;
+  color: var(--theme-white);
+  border-color: var(--theme-light-grey);
+  box-shadow: none;
+}
+
+/* Style links inside the form card (excluding tables and buttons) */
+.form-card p a,
+.form-card > .card-body > a:not(.btn):not(table a) {
+  color: var(--theme-white);
+  text-decoration: underline;
+}
+
+.form-card p a:hover,
+.form-card > .card-body > a:not(.btn):not(table a):hover {
+  color: var(--theme-light-grey);
+}
+
+/* Ensure paragraph text is also light (excluding tables) */
+.form-card > .card-body > p {
+    color: var(--theme-light-grey);
+}
+
+/* Keep form buttons consistent */
+.form-card .btn-primary,
+.form-card .btn-success,
+.form-card .btn-secondary {
+    /* Inherit global button style including border-radius */
+}
+
+/* --- Admin Table Styling (Inside Form Cards) --- */
+.form-card h2.card-title {
+  color: var(--theme-white);
+}
+
+.form-card table {
+  color: var(--theme-black);
+}
+
+/* Style table cells (td) */
+.form-card table td {
+  color: var(--theme-black);
+  background-color: var(--theme-light-grey);
+  vertical-align: middle;
+}
+
+/* Style links within table cells */
+.form-card table td a:not(.btn) {
+  color: #0d6efd;
+  text-decoration: underline;
+}
+.form-card table td a:not(.btn):hover {
+  color: #0a58ca;
+}
+
+/* Style table header (thead) */
+.form-card table thead.table-dark th {
+  color: var(--theme-black);
+  background-color: #adb5bd;
+  vertical-align: middle;
+  border-color: #9a9fa5;
+}
+
+/* Ensure buttons inside tables still use the global button style */
+.form-card table .btn {
+  /* Inherit global black button style including border-radius */
+}
+
+/* Adjust link color for View Resume button if needed */
+.form-card table .btn-outline-primary {
+    border-color: var(--theme-black);
+    color: var(--theme-black);
+    border-radius: var(--border-curve-radius); /* <<< Ensure inner buttons also curve */
+}
+.form-card table .btn-outline-primary:hover {
+    background-color: var(--theme-black);
+    color: var(--theme-light-grey);
+    border-color: var(--theme-black);
+}
+
+/* --- List Styling (If you still have plain lists anywhere) --- */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background: var(--theme-dark-grey);
+  color: var(--theme-light-grey);
+  margin: 15px 0;
+  padding: 20px;
+  border-radius: var(--border-curve-radius); /* <<< UPDATED */
+  border: 1px solid #444;
+}
